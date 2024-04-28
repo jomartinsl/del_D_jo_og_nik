@@ -4,8 +4,8 @@ from fastapi import FastAPI, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.encoders import jsonable_encoder
-from domain import Actuator, ActuatorWithSensor, Device, Floor, Measurement, Room, Sensor, SmartHouse
-from persistence import SmartHouseRepository
+from smarthouse.domain import Actuator, ActuatorWithSensor, Device, Floor, Measurement, Room, Sensor, SmartHouse
+from smarthouse.persistence import SmartHouseRepository
 from pydantic import BaseModel
 from pathlib import Path
 
@@ -225,7 +225,7 @@ def get_sensor_state(uuid: str) -> Response:
         return JSONResponse(content=jsonable_encoder({'reason': 'actuator with uuid not found'}), status_code=404)
 
 
-@app.put("/smarthouse/actuator/{uuid}/")
+@app.put("/smarthouse/actuator/{uuid}")
 def update_sensor_state(uuid: str, target_state: ActuatorStateInfo) -> Response:
     device = smarthouse.get_device_by_id(uuid)
     if device and isinstance(device, Actuator):

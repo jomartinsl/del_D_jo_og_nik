@@ -12,12 +12,21 @@ def lightbulb_cmd(state, did):
     new_state = state.get()
 
     logging.info(f"Dashboard: {new_state}")
+    get_url = f"{common.BASE_URL}actuator/{common.LIGHTBULB_DID}/current"
+    put_url = f"{common.BASE_URL}actuator/{common.LIGHTBULB_DID}"
+    requests.get(get_url)
+    
 
-    # TODO: START
-    # send HTTP request with new actuator state to cloud service
+    if new_state == "On":
+        new_data = {"state": "running"}
+        requests.put(put_url, json=new_data)
+    elif new_state == "Off":
+        new_data = {"state": "Off"}
+        requests.put(put_url, json=new_data)
+   
+    logging.info(f"Dashboard: {new_data}")
 
 
-    # TODO: END
 
 
 def init_lightbulb(container, did):
