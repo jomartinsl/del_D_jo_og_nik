@@ -4,8 +4,8 @@ from fastapi import FastAPI, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi.encoders import jsonable_encoder
-from smarthouse.domain import Actuator, ActuatorWithSensor, Device, Floor, Measurement, Room, Sensor, SmartHouse
-from smarthouse.persistence import SmartHouseRepository
+from domain import Actuator, ActuatorWithSensor, Device, Floor, Measurement, Room, Sensor, SmartHouse
+from persistence import SmartHouseRepository
 from pydantic import BaseModel
 from pathlib import Path
 
